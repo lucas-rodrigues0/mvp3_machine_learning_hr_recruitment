@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML test</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <link rel="stylesheet" href="./styles/style.css">
+
+</head>
+
+<body>
+    <main>
+        <header class="container-fluid">
+            <h1>HR Hiring Decision Machine Learning Model</h1>
+
+        </header>
+        <!-- INPUT EMAIL -->
+        <div class="container-fluid input-container mb-3">
+            <label for="candidateEmail" class="form-label p-2">Candidate Email</label>
+            <input type="email" class="form-control" id="candidateEmail" placeholder="name@example.com">
+            <div class="form-check mt-1">
+                <label class="form-check-label" for="checkToUpdate">
+                  to update
+                </label>
+                <input class="form-check-input" type="checkbox" value="1" id="checkToUpdate">
+            </div>
+        </div>
+        <div class="container-fluid input-container">
+            <form id="dataForm">
+                <div class="d-flex flex-row">
+                    <!-- INPUT AGE -->
+                    <div class="input-card input-range-card" id="inputCardAge">
+                        <div class="d-flex flex-row justify-content-center mt-2">
+                            <div class="range-input">
+                                <label for="rangeAge">Age</label>
+                                <input type="text" id="rangeAgeInput" class="range-input-text" value=""
+                                    onchange="updateRangeInput(this.value, 'rangeAge');">
+
+                            </div>
+                            <input type="range" id="rangeAge" name="range_age" min="20" max="50" orient="vertical"
+                                onchange="updateRangeInput(this.value, 'rangeAgeInput');" />
+                        </div>
+                    </div>
+                    <!-- INPUT GENDER -->
+                    <div class="input-card input-range-card">
+                        <div class="d-flex flex-column">
+                            <p class="mt-4">Gender</p>
+                            <div>
+                                <input type="radio" name="genderRadioInput" value="0" id="radioFem">
+                                <label for="radioFem">Fem</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="genderRadioInput" value="1" id="radioMasc">
+                                <label for="radioMasc">Masc</label>
+                            </div>
+                            <input type="radio" name="genderRadioInput" value="" id="radioDefault" class="invisible"
+                                checked>
+                        </div>
+                    </div>
+                    <!-- INPUT Education Level -->
+                    <div class="input-card input-select-card">
+                        <div class="d-flex flex-column align-items-center mt-2 py-3">
+                            <label for="educationSelect">Education Level</label>
+                            <select id="educationSelect" class="form-select mt-3" aria-label="Education select">
+                                <option value="" selected>Select a option</option>
+                                <option value="1">Bachelor's (Type 1)</option>
+                                <option value="2">Bachelor's (Type 2)</option>
+                                <option value="3">Master's</option>
+                                <option value="4">PhD</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- INPUT XP YEARS -->
+                    <div class="input-card input-range-card">
+                        <div class="d-flex flex-row justify-content-center  mt-2">
+                            <div class="range-input">
+                                <label for="rangeXpYears">Experience Years</label>
+                                <input type="text" id="rangeXpInput" class="range-input-text" value=""
+                                    onchange="updateRangeInput(this.value, 'rangeXpYears');">
+                            </div>
+                            <input type="range" id="rangeXpYears" name="rangeXpYears" max="15" orient="vertical"
+                                onchange="updateRangeInput(this.value, 'rangeXpInput');" />
+                        </div>
+                    </div>
+                    <!-- INPUT Previous Companies Worked -->
+                    <div class="input-card input-range-card">
+                        <div class="d-flex flex-row justify-content-center mt-2">
+                            <div class="range-input">
+                                <label for="rangePrevCia">Previous Companies Worked</label>
+                                <input type="text" id="rangePrevCiaInput" class="range-input-text" value=""
+                                    onchange="updateRangeInput(this.value, 'rangePrevCia');">
+                            </div>
+                            <input type="range" id="rangePrevCia" name="rangePrevCia" max="5" orient="vertical"
+                                onchange="updateRangeInput(this.value, 'rangePrevCiaInput');" />
+                        </div>
+                    </div>
+                    <!-- INPUT Distance From Company -->
+                    <div class="input-card input-range-card">
+                        <div class="d-flex flex-row justify-content-center mt-2">
+                            <div class="range-input">
+                                <label for="rangeDistCia">Distance From Company</label>
+                                <input type="text" id="rangeDistCiaInput" class="range-input-text" value=""
+                                    onchange="updateRangeInput(this.value, 'rangeDistCia');">
+                            </div>
+                            <input type="range" id="rangeDistCia" name="rangeDistCia" max="50" step="0.01"
+                                orient="vertical" onchange="updateRangeInput(this.value, 'rangeDistCiaInput');" />
+                        </div>
+                    </div>
+                    <!-- INPUT Interview Score -->
+                    <div class="input-card input-range-card">
+                        <div class="d-flex flex-row justify-content-center mt-2">
+                            <div class="range-input">
+                                <label for="rangeInterviewScore">Interview Score</label>
+                                <input type="text" id="rangeInterviewScoreInput" class="range-input-text" value=""
+                                    onchange="updateRangeInput(this.value, 'rangeInterviewScore');">
+                            </div>
+                            <input type="range" id="rangeInterviewScore" name="rangeInterviewScore" orient="vertical"
+                                onchange="updateRangeInput(this.value, 'rangeInterviewScoreInput');" />
+                        </div>
+                    </div>
+                    <!-- INPUT Skill Score -->
+                    <div class="input-card input-range-card">
+                        <div class="d-flex flex-row justify-content-center mt-2">
+                            <div class="range-input">
+                                <label for="rangeSkillScore">Skill Score</label>
+                                <input type="text" id="rangeSkillScoreInput" class="range-input-text" value=""
+                                    onchange="updateRangeInput(this.value, 'rangeSkillScore');">
+                            </div>
+                            <input type="range" id="rangeSkillScore" name="rangeSkillScore" orient="vertical"
+                                onchange="updateRangeInput(this.value, 'rangeSkillScoreInput');" />
+                        </div>
+                    </div>
+                    <!-- INPUT Personality Score-->
+                    <div class="input-card input-range-card">
+                        <div class="d-flex flex-row justify-content-center mt-2">
+                            <div class="range-input">
+                                <label for="rangePersonalityScore">Personality Score</label>
+                                <input type="text" id="rangePersonalityScoreInput" class="range-input-text" value=""
+                                    onchange="updateRangeInput(this.value, 'rangePersonalityScore');">
+                            </div>
+                            <input type="range" id="rangePersonalityScore" name="rangePersonalityScore"
+                                orient="vertical"
+                                onchange="updateRangeInput(this.value, 'rangePersonalityScoreInput');" />
+                        </div>
+                    </div>
+                    <!-- INPUT Recruitment Strategy -->
+                    <div class="input-card input-select-card">
+                        <div class="d-flex flex-column align-items-center mt-2 py-3">
+                            <label for="strategySelect">Recruitment Strategy</label>
+                            <select id="strategySelect" class="form-select mt-3" aria-label="Strategy select">
+                                <option value="" selected>Select a option</option>
+                                <option value="1">Aggressive</option>
+                                <option value="2">Moderate</option>
+                                <option value="3">Conservative</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" id="formBtn" class="btn btn-secondary btnSize">Submit</button>
+                </div>
+            </form>
+        </div>
+        <!-- Table to display candidates data -->
+        <div class="table-container">
+            <div class="container-fluid">
+                <table class="table table-striped">
+                    <thead id="tableHead"></thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="./scripts/index.js"></script>
+
+</body>
+
+</html>
