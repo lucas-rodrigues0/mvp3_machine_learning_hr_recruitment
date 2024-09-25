@@ -55,17 +55,14 @@ A árvore de diretórios utilizada é:
 |   ├── log/                                                    # gerado automaticamente
 |   ├── machine_learning/
 |   │   ├── data/
-|   │   │   ├── test_dataset_hr_recruitment.csv
-|   │   │   ├── X_test_dataset_hr_recruitment.csv
-|   │   │   └── y_test_dataset_hr_recruitment.csv
+|   │   │   └── golden_dataset_hr_recruitment.csv
 |   │   ├── models/
-|   │   │   └── hr_recruitment_classifier.pkl
+|   │   │   └── hr_recruitment_GBclassifier.pkl
 |   │   ├── notebooks/
 |   │   │   └── hr_recruitment_predict_ML_notebook.ipynb
 |   │   ├── pipelines/
-|   │   │   ├── hr_recruitment_pipeline_test_extraTree.pkl
 |   │   │   ├── hr_recruitment_pipeline_test_randomForrest.pkl
-|   │   │   └── hr_recruitment_pipeline.pkl
+|   │   │   └── hr_recruitment_GBpipeline.pkl
 |   │   └── scalers/
 |   │       └── standard_scaler_recruitment.pkl
 |   ├── model/
@@ -222,7 +219,7 @@ Para o Front-end, basta abrir o arquivo `front/index.js` no browser.
 
 ## Testes automáticos
 
-Foram implementados testes automatizados para verificar métricas do modelo com o intuito de avaliar se um novo modelo possui uma acurácia suficiente ou melhor que a do modelo embarcado. Para comparação foi utilizado dois modelos, um com acurácia suficiente ou melhor e outro com menor pontuação. Para não haver quebra do teste referente ao modelo com menor acurácia foi utilizado o operador de negação.  
+Foram implementados testes automatizados para verificar métricas do modelo com o intuito de avaliar se um novo modelo possui metricas suficiente ou melhor que a do modelo embarcado. Para comparação foi utilizado uma pipeline com o Random Forest, que possui metricas semelhantes ao modelo embarcado. As métricas utilizadas nos testes são `acurácia`, `recall`, `precisão` e `f score`  
 
 Para rodar os teste, na raiz do diretório `api`, e com o ambiente virtual ativado, executar o comando:
 ```

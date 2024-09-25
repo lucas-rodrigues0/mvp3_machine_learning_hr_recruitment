@@ -55,7 +55,9 @@ class Candidate(Base):
         self.hiring_decision = hiring_decision
 
         if created_at:
+            print(created_at, "CREATED AT")
             self.created_at = created_at
 
         if updated_at:
+            print(updated_at, "UPDATED AT")
             self.updated_at = updated_at

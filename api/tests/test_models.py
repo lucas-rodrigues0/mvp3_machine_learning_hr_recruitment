@@ -3,7 +3,9 @@ from model import *
 # To run: pytest -v
 
 # Dataset loader parameters
-url_dados = os.path.join("machine_learning", "data", "test_dataset_hr_recruitment.csv")
+url_dados = os.path.join(
+    "machine_learning", "data", "golden_dataset_hr_recruitment.csv"
+)
 colunas = [
     "Age",
     "Gender",
@@ -24,22 +26,31 @@ array = dataset.values
 X_input = array[:, 0:-1]
 y_input = array[:, -1]
 
-# Set default value for a base accuracy score
+# Set default value for scores
 BASE_ACCURACY = 0.90
+BASE_RECALL = 0.80
+BASE_PRECISION = 0.90
+BASE_FSCORE = 0.85
 
 
 def test_model_gradient_booster_with_accuracy():
     """Test Gradient booster model with an accuracy score above the base value"""
     # Import the Gradient Booster pipeline
     gb_path = os.path.join(
-        "machine_learning", "pipelines", "hr_recruitment_pipeline.pkl"
+        "machine_learning", "pipelines", "hr_recruitment_GBpipeline.pkl"
     )
     pipeline_gb = Pipeline.load_pipeline(gb_path)
 
-    # Get the accuracy score
+    # Get the metrics score
     acuracia_gb = Evaluator.evaluation(pipeline_gb, X_input, y_input)
+    recall_gb = Evaluator.evaluation(pipeline_gb, X_input, y_input, "recall")
+    precision_gb = Evaluator.evaluation(pipeline_gb, X_input, y_input, "precision")
+    fscore_gb = Evaluator.evaluation(pipeline_gb, X_input, y_input, "fscore")
 
     assert acuracia_gb >= BASE_ACCURACY
+    assert recall_gb >= BASE_RECALL
+    assert precision_gb >= BASE_PRECISION
+    assert fscore_gb >= BASE_FSCORE
 
 
 def test_model_random_forest_with_accuracy():
@@ -52,22 +63,13 @@ def test_model_random_forest_with_accuracy():
     )
     pipeline_rf = Pipeline.load_pipeline(rf_path)
 
-    # Get the accuracy score
+    # Get the metrics score
     acuracia_rf = Evaluator.evaluation(pipeline_rf, X_input, y_input)
+    recall_rf = Evaluator.evaluation(pipeline_rf, X_input, y_input, "recall")
+    precision_rf = Evaluator.evaluation(pipeline_rf, X_input, y_input, "precision")
+    fscore_rf = Evaluator.evaluation(pipeline_rf, X_input, y_input, "fscore")
 
     assert acuracia_rf >= BASE_ACCURACY
-
-
-def test_model_extra_trees_not_with_accuracy():
-    """Test Extra Trees model with an accuracy score below the base value"""
-    # Import the Extra Trees pipeline
-    et_path = os.path.join(
-        "machine_learning", "pipelines", "hr_recruitment_pipeline_test_extraTree.pkl"
-    )
-
-    pipeline_et = Pipeline.load_pipeline(et_path)
-
-    # Get the accuracy score
-    acuracia_et = Evaluator.evaluation(pipeline_et, X_input, y_input)
-
-    assert not acuracia_et >= BASE_ACCURACY
+    assert recall_rf >= BASE_RECALL
+    assert precision_rf >= BASE_PRECISION
+    assert fscore_rf >= BASE_FSCORE

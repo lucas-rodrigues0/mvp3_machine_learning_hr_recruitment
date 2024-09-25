@@ -116,7 +116,7 @@ def predict(form: CandidateSchema):
 
     # Load the pipeline
     pipeline_path = os.path.join(
-        "machine_learning", "pipelines", "hr_recruitment_pipeline.pkl"
+        "machine_learning", "pipelines", "hr_recruitment_GBpipeline.pkl"
     )
     pipeline = Pipeline.load_pipeline(pipeline_path)
 
@@ -159,6 +159,7 @@ def predict(form: CandidateSchema):
                 personality_score=personality_score,
                 recruitment_strategy=recruitment_strategy,
                 hiring_decision=hiring_decision,
+                updated_at=datetime.now(),
             )
             session.add(candidate)
 
