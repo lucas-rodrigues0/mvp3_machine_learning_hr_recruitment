@@ -39,6 +39,9 @@ O sistema é composto pelo Back-end implementado no diretório `API`, e pelo Fro
 
 
 O modelo de Machine Learning encontra-se embarcado no sistema back-end.  
+O notebook com o projeto de treinamento do modelo encontra-se no diretório `machine_learning/notebooks/`  com o nome de `hr_recruitment_predict_ML_notebook.ipynb`.
+
+
 O front-end possui um formulário para cadastramento de candidatos, que pede todos os dados necessários para o modelo realizar uma predição.  
 O back-end retorna então a lista de todos os candidatos cadastrados já com o resultado da predição. Todos os dados são inseridos no banco de dados.  
 É possível editar os dados de um candidato já cadastrado. Será então feita uma nova predição para a total atualização dos dados do candidato no banco de dados.  
