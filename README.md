@@ -201,7 +201,7 @@ para ativar o ambiente rodar o comando:
 source .venv/bin/activate
 
 # sistema windows
-.\.venv\Script\activate
+.\.venv\Scripts\activate
 ```
 
 Com o ambiente ativado, fazer a instalação das dependências necessárias. Execute o comando:
